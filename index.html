@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070a10">
+  <title>SNOC Operations Hub v7</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="ambient ambient-red" aria-hidden="true"></div>
+  <div class="ambient ambient-cyan" aria-hidden="true"></div>
+
+  <!-- LEFT NAVIGATION -->
+  <aside id="sidebar">
+    <div class="brand">
+      <i aria-hidden="true"></i>
+      <span><b>SNOC</b><small>OPERATIONS HUB</small></span>
+    </div>
+
+    <nav aria-label="Primary navigation">
+      <button class="nav active" data-go="home">⌂ <b>Home</b></button>
+      <button class="nav" data-go="rota">▦ <b>Rota</b></button>
+      <button class="nav" data-go="oncall">◉ <b>On-Call</b></button>
+      <button class="nav" data-go="changes">⌁ <b>Changes</b></button>
+      <button class="nav" data-go="neso">◇ <b>NESO</b></button>
+      <button class="nav" data-go="handover">⇄ <b>Handover</b></button>
+      <button class="nav" data-go="sherlock">⌕ <b>Sherlock</b></button>
+      <button class="nav" data-go="quicklinks">↗ <b>Quick Links</b></button>
+      <button class="nav" data-go="procedures">≡ <b>Procedures</b></button>
+      <button class="nav" data-settings>⚙ <b>Settings</b></button>
+    </nav>
+
+    <footer>
+      <i aria-hidden="true"></i>
+      <span><b>SYSTEM READY</b><small>Links managed in config.js</small></span>
+    </footer>
+  </aside>
+
+  <div class="shell">
+    <!-- HEADER -->
+    <header>
+      <button id="mobileMenu" class="icon mobile" aria-label="Open menu">☰</button>
+      <button id="collapse" class="icon collapse" aria-label="Collapse sidebar">‹</button>
+
+      <div class="title">
+        <small>NETWORK OPERATIONS CONTROL</small>
+        <h1>SNOC OPERATIONS HUB</h1>
+        <p>Everything you need for your shift, in one place</p>
+      </div>
+
+      <div class="clock" aria-live="polite">
+        <small id="day">DAY</small>
+        <b id="time">--:--:--</b>
+        <span id="date">-- --- ----</span>
+      </div>
+
+      <button class="btn header-sherlock" data-link="sherlock">⌕ SHERLOCK</button>
+      <button class="icon" data-settings aria-label="Open settings">⚙</button>
+    </header>
+
+    <main id="main">
+      <!-- SEARCH -->
+      <section class="command" aria-label="Hub search">
+        <label>⌕ <input id="search" type="search" placeholder="Search SNOC Hub..." aria-label="Search SNOC Hub"><kbd>/</kbd></label>
+        <span><i aria-hidden="true"></i>SYSTEM ONLINE</span>
+      </section>
+
+      <!-- OPERATIONAL NOTICES -->
+      <section id="home" class="panel notice searchable" data-widget="notices" data-search="notice major incident maintenance issue">
+        <div class="notice-title">
+          <small>SHIFT NOTICE BOARD</small>
+          <h2>Operational notices</h2>
+        </div>
+        <div id="noticeContent" class="notice-content"></div>
+        <em id="noticeBadge">INFORMATION</em>
+      </section>
+
+      <!-- TODAY AT A GLANCE -->
+      <section class="panel searchable" data-widget="glance" data-search="today glance date time shift on call handover status">
+        <div class="head">
+          <div><small>LIVE SHIFT TELEMETRY</small><h2>Today at a glance</h2></div>
+          <em class="live"><i aria-hidden="true"></i>LIVE</em>
+        </div>
+        <div class="metrics">
+          <article><small>DATE</small><b id="today">Not configured</b></article>
+          <article><small>CURRENT TIME</small><b id="glanceTime">Not configured</b></article>
+          <article><small>MY SHIFT</small><b>Not configured</b></article>
+          <article><small>NETWORKS ON-CALL</small><b>Not configured</b></article>
+          <article><small>HANDOVER</small><button data-link="handover">OPEN RESOURCE ↗</button></article>
+          <article><small>SNOC STATUS</small><b>Not configured</b></article>
+          <article><small>NESO STATUS</small><b>Not configured</b></article>
+        </div>
+      </section>
+
+      <!-- PRIMARY WIDGET GRID -->
+      <div class="grid">
+        <!-- SNOC ROTA -->
+        <section id="rota" class="card priority searchable" data-widget="rota" data-search="snoc rota dashboard shifts coverage command centre">
+          <div class="top"><i aria-hidden="true">▦</i><em>ROTA</em></div>
+          <h2>SNOC Rota</h2>
+          <p>Open the MES NOC Rota Command Centre</p>
+          <div class="rota-launch">
+            <div class="rota-launch-icon" aria-hidden="true">▦</div>
+            <div class="rota-launch-info"><small>MES NOC ROTA</small><strong>Rota Command Centre</strong><span>View today's shifts, team coverage and rota information</span></div>
+            <div class="rota-launch-status"><i aria-hidden="true"></i>DASHBOARD</div>
+          </div>
+          <div class="actions"><button class="btn primary" data-link="snocRota">OPEN ROTA DASHBOARD ↗</button></div>
+        </section>
+
+        <!-- SHIFT HANDOVER -->
+        <section id="handover" class="card priority searchable" data-widget="handover" data-search="handover previous update">
+          <div class="top"><i aria-hidden="true">⇄</i><em>HANDOVER</em></div>
+          <h2>Shift Handover</h2><p>View the latest SNOC shift handover</p>
+          <div class="data three">
+            <span><small>LAST UPDATED</small><b>Not configured</b></span>
+            <span><small>UPDATED BY</small><b>Not configured</b></span>
+            <span><small>CURRENT SHIFT</small><b>Not configured</b></span>
+          </div>
+          <div class="actions"><button class="btn primary" data-link="handover">OPEN HANDOVER</button><button class="btn" data-link="updateHandover">CREATE / UPDATE</button></div>
+        </section>
+
+        <!-- ON-CALL COVERAGE -->
+        <section id="oncall" class="card searchable" data-widget="oncall" data-search="on call networks security oss coverage">
+          <div class="top"><i aria-hidden="true">◉</i><em>NESO ON-CALL</em></div>
+          <h2>NESO On-Call Coverage</h2><p>Current technical on-call coverage</p>
+          <div class="rows on-call-selectors">
+            <details class="on-call-dropdown" data-on-call="networks">
+              <summary><small>NETWORKS</small><b>Select names</b></summary>
+              <div class="on-call-options"></div>
+            </details>
+            <details class="on-call-dropdown" data-on-call="security">
+              <summary><small>SECURITY</small><b>Select names</b></summary>
+              <div class="on-call-options"></div>
+            </details>
+            <details class="on-call-dropdown" data-on-call="oss">
+              <summary><small>OSS</small><b>Select names</b></summary>
+              <div class="on-call-options"></div>
+            </details>
+          </div>
+          <div class="actions"><button class="btn primary" data-link="onCallRota">OPEN ON-CALL ROTA</button><button class="btn" data-link="managementRota">OPEN ESCALATION ROTA</button></div>
+        </section>
+
+        <!-- CHANGE TRACKER -->
+        <section id="changes" class="card change searchable" data-widget="changes" data-search="change tracker schedule upcoming approved customer filter date">
+          <div class="top"><i aria-hidden="true">⌁</i><em>CHANGE CONTROL</em></div>
+          <h2>Change Tracker</h2><p>Review upcoming operational changes and the forward schedule</p>
+          <div class="data three">
+            <span><small>TODAY</small><b>Not configured</b></span>
+            <span><small>UPCOMING</small><b>Not configured</b></span>
+            <span><small>STATUS</small><b>Source not connected</b></span>
+          </div>
+          <div class="actions"><button class="btn primary" data-link="changeTracker">OPEN CHANGE TRACKER ↗</button></div>
+        </section>
+
+        <!-- DAILY REPORT -->
+        <section class="card searchable" data-widget="dailyReport" data-search="daily report reporting processes lwis">
+          <div class="top"><i aria-hidden="true">▤</i><em>DAILY REPORT</em></div>
+          <h2>Daily Report</h2>
+          <p>Open the daily reporting channel</p>
+          <div class="actions"><button class="btn primary" data-link="dailyReports">OPEN DAILY REPORT ↗</button></div>
+        </section>
+
+        <!-- SHERLOCK -->
+        <section id="sherlock" class="card ai searchable" data-widget="sherlock" data-search="sherlock ai assistant procedures documentation">
+          <div class="ai-orb" aria-hidden="true"><span>⌕</span><i></i></div>
+          <div><small>SNOC AI ASSISTANT</small><h2>SHERLOCK</h2><p>Search SNOC procedures, documentation and operational information.</p><div class="terminal">&gt; Intelligence interface ready<br><span>External or internal URL mode active</span></div><div class="actions"><button class="btn primary" data-link="sherlock">OPEN SHERLOCK</button><button class="btn" data-link="sherlock">ASK SHERLOCK</button></div></div>
+        </section>
+
+        <!-- NESO -->
+        <section id="neso" class="card wide searchable" data-widget="neso" data-search="neso cni enterprise rota procedures manual escalation">
+          <div class="top"><i aria-hidden="true">◇</i><button id="nesoToggle" class="text">COLLAPSE ⌃</button></div>
+          <h2>NESO Operations</h2><p>Secure launchpad for NESO operational resources</p>
+          <div id="nesoGrid" class="resources">
+            <button data-link="nesoCni">NESO CNI <b>↗</b></button>
+            <button data-link="nesoEnterprise">NESO Enterprise <b>↗</b></button>
+            <button data-link="nesoRota">NESO On-Call Rota <b>↗</b></button>
+            <button data-link="nesoProcedures">NESO Procedures <b>↗</b></button>
+            <button data-link="customerOperationsManual">Customer Operations Manual <b>↗</b></button>
+            <button data-link="escalationInformation">Escalation Information <b>↗</b></button>
+            <button data-link="networkDocumentation">Network Documentation <b>↗</b></button>
+            <button data-link="usefulNesoLinks">Useful NESO Links <b>↗</b></button>
+          </div>
+        </section>
+
+        <!-- SHIFT CHECKLIST -->
+        <section class="card searchable" data-widget="checklist" data-search="checklist monitoring incidents queues changes escalations">
+          <div class="top"><i aria-hidden="true">✓</i><em id="progress">0 / 8</em></div>
+          <h2>Shift Checklist</h2><p>Engineer start-of-shift validation sequence</p><div id="checks" class="checks"></div><button id="resetChecklist" class="btn">RESET CHECKLIST</button>
+        </section>
+
+        <!-- PROCEDURES -->
+        <section id="procedures" class="card searchable" data-widget="procedures" data-search="procedures documentation runbook manual">
+          <div class="top"><i aria-hidden="true">≡</i><em>REFERENCE</em></div>
+          <h2>Procedures</h2><p>Approved SNOC procedures and operational documentation</p>
+          <div class="data"><span><small>KNOWLEDGE SOURCE</small><b>Not configured</b></span></div>
+          <div class="actions"><button class="btn primary" data-link="procedures">OPEN PROCEDURES</button><button class="btn" data-link="documentation">DOCUMENTATION</button></div>
+        </section>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <section id="quicklinks" class="panel searchable" data-widget="quicklinks" data-search="quick links operational systems">
+        <div class="head"><div><small>QUICK ACCESS</small><h2>Quick links</h2></div><span class="muted">SECURE EXTERNAL LINKS</span></div>
+        <div id="quick" class="quick"></div>
+      </section>
+
+      <div id="none" class="none" hidden>No matching hub modules</div>
+    </main>
+  </div>
+
+  <div id="overlay" hidden></div>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- SETTINGS -->
+  <dialog id="settings">
+    <form method="dialog">
+      <header><div><small>LOCAL PREFERENCES</small><h2>Widget visibility</h2><p>URLs and operational notices are maintained in config.js.</p></div><button value="cancel" class="icon" aria-label="Close settings">×</button></header>
+      <div id="widgetSettings"></div>
+      <footer><button type="button" id="resetWidgets" class="btn">RESET WIDGETS</button><span></span><button value="cancel" class="btn primary">DONE</button></footer>
+    </form>
+  </dialog>
+</body>
+</html>

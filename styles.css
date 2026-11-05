@@ -1,0 +1,1438 @@
+/* =========================================================
+   OPERATIONS HUB
+   Main Stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   1. COLOURS & GLOBAL VARIABLES
+   ========================================================= */
+
+   :root {
+    --red: #e60000;
+    --cyan: #37dcff;
+    --green: #38e68f;
+    --amber: #ffb020;
+    --blue: #35a9ff;
+
+    --panel: #101722;
+    --text: #f3f7fc;
+    --muted: #8d9aad;
+    --line: rgba(130, 158, 190, 0.18);
+
+    --side: 248px;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+
+/* =========================================================
+   2. RESET / BASE STYLES
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 80% 0, #191225, transparent 35%),
+        linear-gradient(145deg, #070a10, #0a1019);
+
+    color: var(--text);
+    font-family: Inter, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   3. ACCESSIBILITY
+   ========================================================= */
+
+.skip {
+    position: fixed;
+    top: -60px;
+    z-index: 90;
+
+    padding: 10px;
+
+    background: #fff;
+    color: #000;
+}
+
+.skip:focus {
+    top: 10px;
+}
+
+
+/* =========================================================
+   4. BACKGROUND EFFECTS
+   ========================================================= */
+
+.ambient {
+    position: fixed;
+
+    border-radius: 50%;
+    filter: blur(100px);
+
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.ambient-red {
+    width: 400px;
+    height: 400px;
+
+    right: -100px;
+
+    background: var(--red);
+}
+
+.ambient-cyan {
+    width: 300px;
+    height: 300px;
+
+    left: 25%;
+    bottom: -150px;
+
+    background: var(--cyan);
+}
+
+
+/* =========================================================
+   5. SIDEBAR
+   ========================================================= */
+
+#sidebar {
+    position: fixed;
+    z-index: 30;
+
+    inset: 0 auto 0 0;
+
+    width: var(--side);
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(7, 10, 16, 0.95);
+    border-right: 1px solid var(--line);
+
+    transition: 0.2s;
+}
+
+
+/* ---------- Brand ---------- */
+
+.brand {
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+    padding: 20px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.brand > i {
+    width: 40px;
+    height: 40px;
+
+    border: 3px solid var(--red);
+    border-radius: 50%;
+
+    box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+}
+
+.brand span,
+#sidebar footer span {
+    display: grid;
+}
+
+.brand b {
+    letter-spacing: 0.17em;
+}
+
+.brand small,
+#sidebar footer small {
+    font-size: 0.6rem;
+    color: var(--muted);
+}
+
+
+/* ---------- Navigation ---------- */
+
+nav {
+    display: grid;
+
+    gap: 4px;
+    padding: 15px 12px;
+}
+
+.nav {
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+    padding: 0 14px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: transparent;
+    color: #9ba7b8;
+
+    text-align: left;
+}
+
+.nav:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.nav.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(230, 0, 0, 0.9),
+            rgba(230, 0, 0, 0.2)
+        );
+
+    color: #fff;
+}
+
+
+/* ---------- Sidebar Footer ---------- */
+
+#sidebar footer {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    padding: 17px;
+
+    border-top: 1px solid var(--line);
+}
+
+#sidebar footer > i,
+.command > span i,
+.live i,
+.rota-launch-status i {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+}
+
+#sidebar footer b {
+    font-size: 0.65rem;
+    color: var(--green);
+}
+
+
+/* =========================================================
+   6. SIDEBAR COLLAPSED STATE
+   ========================================================= */
+
+.shell {
+    margin-left: var(--side);
+    transition: 0.2s;
+}
+
+body.collapsed #sidebar {
+    width: 76px;
+}
+
+body.collapsed .shell {
+    margin-left: 76px;
+}
+
+body.collapsed .brand span,
+body.collapsed .nav b,
+body.collapsed #sidebar footer span {
+    display: none;
+}
+
+body.collapsed .brand,
+body.collapsed .nav,
+body.collapsed #sidebar footer {
+    justify-content: center;
+}
+
+
+/* =========================================================
+   7. HEADER
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+    height: 108px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+    padding: 18px 30px;
+
+    background: rgba(7, 10, 16, 0.75);
+    border-bottom: 1px solid var(--line);
+
+    backdrop-filter: blur(22px);
+}
+
+
+/* ---------- Header Title ---------- */
+
+.title {
+    flex: 1;
+}
+
+.title > small,
+.head small,
+.notice-title small,
+.ai small,
+dialog header small {
+    font-size: 0.6rem;
+    font-weight: 800;
+
+    color: #ff4c59;
+
+    letter-spacing: 0.16em;
+}
+
+.title h1 {
+    margin: 4px 0 2px;
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+}
+
+.title p {
+    margin: 0;
+
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+
+/* ---------- Clock ---------- */
+
+.clock {
+    display: grid;
+
+    padding-right: 14px;
+
+    text-align: right;
+
+    border-right: 1px solid var(--line);
+}
+
+.clock small {
+    font-size: 0.58rem;
+    color: var(--cyan);
+}
+
+.clock b {
+    font: 1.25rem Consolas, monospace;
+}
+
+.clock span {
+    font-size: 0.64rem;
+    color: var(--muted);
+}
+
+
+/* ---------- Header Buttons ---------- */
+
+.icon {
+    width: 41px;
+    height: 41px;
+
+    border: 1px solid var(--line);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+}
+
+.collapse {
+    margin-left: -49px;
+}
+
+.mobile {
+    display: none;
+}
+
+
+/* =========================================================
+   8. MAIN CONTENT
+   ========================================================= */
+
+main {
+    max-width: 1720px;
+
+    margin: auto;
+    padding: 25px 30px 48px;
+}
+
+
+/* =========================================================
+   9. COMMAND / SEARCH BAR
+   ========================================================= */
+
+.command {
+    display: flex;
+
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.command label {
+    height: 49px;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+    padding: 0 15px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    background: var(--panel);
+}
+
+.command input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    background: none;
+    color: #fff;
+}
+
+.command kbd {
+    padding: 3px 7px;
+
+    border: 1px solid var(--line);
+    border-radius: 5px;
+
+    color: var(--muted);
+}
+
+.command > span {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+    padding: 0 17px;
+
+    border: 1px solid rgba(56, 230, 143, 0.2);
+    border-radius: 10px;
+
+    background: rgba(56, 230, 143, 0.05);
+    color: var(--green);
+
+    font-size: 0.62rem;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   10. PANELS & CARDS
+   ========================================================= */
+
+.panel,
+.card {
+    position: relative;
+
+    padding: 20px;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 27, 39, 0.92),
+            rgba(11, 16, 25, 0.9)
+        );
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+.panel {
+    margin-bottom: 17px;
+}
+
+.card {
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(55, 220, 255, 0.28);
+}
+
+.priority {
+    border-top: 2px solid var(--red);
+}
+
+
+/* =========================================================
+   11. OPERATIONAL NOTICES
+   ========================================================= */
+
+.notice {
+    display: grid;
+
+    grid-template-columns: minmax(180px, auto) 1fr auto;
+
+    align-items: start;
+
+    gap: 20px;
+
+    border-left: 3px solid var(--blue);
+}
+
+.notice h2,
+.head h2,
+.card h2 {
+    margin: 4px 0 0;
+}
+
+.notice-content {
+    display: grid;
+    gap: 8px;
+}
+
+.empty,
+.notice-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 12px 14px;
+
+    border: 1px solid rgba(53, 169, 255, 0.14);
+    border-radius: 9px;
+
+    background: rgba(53, 169, 255, 0.05);
+}
+
+.empty {
+    color: var(--blue);
+}
+
+.empty span,
+.notice-item span {
+    display: grid;
+    color: #fff;
+}
+
+.empty small,
+.notice-item small {
+    font-size: 0.67rem;
+    color: var(--muted);
+}
+
+.notice-item > i {
+    width: 9px;
+    height: 9px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+}
+
+
+/* ---------- Critical ---------- */
+
+.notice-critical {
+    border-color: rgba(230, 0, 0, 0.38) !important;
+    background: rgba(230, 0, 0, 0.08) !important;
+    color: #ff5d68 !important;
+}
+
+.notice-critical > i {
+    background: #ff5d68;
+    box-shadow: 0 0 12px #ff5d68;
+}
+
+
+/* ---------- Attention ---------- */
+
+.notice-attention {
+    border-color: rgba(255, 176, 32, 0.38) !important;
+    background: rgba(255, 176, 32, 0.08) !important;
+    color: var(--amber) !important;
+}
+
+.notice-attention > i {
+    background: var(--amber);
+    box-shadow: 0 0 12px var(--amber);
+}
+
+
+/* ---------- Normal ---------- */
+
+.notice-normal {
+    border-color: rgba(56, 230, 143, 0.3) !important;
+    background: rgba(56, 230, 143, 0.06) !important;
+    color: var(--green) !important;
+}
+
+.notice-normal > i {
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+}
+
+
+/* ---------- Information ---------- */
+
+.notice-information {
+    border-color: rgba(53, 169, 255, 0.3) !important;
+    background: rgba(53, 169, 255, 0.06) !important;
+    color: var(--blue) !important;
+}
+
+.notice-information > i {
+    background: var(--blue);
+    box-shadow: 0 0 12px var(--blue);
+}
+
+
+/* =========================================================
+   12. LABELS / STATUS
+   ========================================================= */
+
+em {
+    padding: 5px 9px;
+
+    border: 1px solid rgba(53, 169, 255, 0.18);
+    border-radius: 99px;
+
+    color: var(--blue);
+
+    font-size: 0.58rem;
+    font-style: normal;
+
+    letter-spacing: 0.09em;
+}
+
+.head,
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.live {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--green);
+}
+
+
+/* =========================================================
+   13. METRICS
+   ========================================================= */
+
+.metrics {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 8px;
+}
+
+.metrics article,
+.data span,
+.rows span {
+    min-width: 0;
+
+    display: grid;
+
+    gap: 6px;
+    padding: 11px;
+
+    border: 1px solid rgba(130, 158, 190, 0.11);
+    border-top: 2px solid rgba(55, 220, 255, 0.22);
+    border-radius: 8px;
+
+    background: rgba(3, 7, 12, 0.35);
+}
+
+.metrics small,
+.data small,
+.rows small {
+    font-size: 0.55rem;
+    color: var(--muted);
+
+    letter-spacing: 0.09em;
+}
+
+.metrics b,
+.data b,
+.rows b {
+    font-size: 0.7rem;
+}
+
+.metrics button,
+.text {
+    padding: 0;
+
+    border: 0;
+
+    background: none;
+    color: var(--cyan);
+
+    font-size: 0.62rem;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   14. DASHBOARD GRID
+   ========================================================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 17px;
+    margin-bottom: 17px;
+}
+
+.wide {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   15. CARD CONTENT
+   ========================================================= */
+
+.top > i {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    clip-path:
+        polygon(
+            25% 7%,
+            75% 7%,
+            100% 50%,
+            75% 93%,
+            25% 93%,
+            0 50%
+        );
+
+    background: rgba(230, 0, 0, 0.13);
+    color: #ff6571;
+
+    font-style: normal;
+    font-size: 1.15rem;
+}
+
+.top em {
+    color: #aeb8c6;
+    border-color: var(--line);
+}
+
+.card > p {
+    min-height: 34px;
+
+    margin: 7px 0 15px;
+
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   16. DATA / ROWS
+   ========================================================= */
+
+.data {
+    display: grid;
+    gap: 7px;
+}
+
+.three {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.rows {
+    display: grid;
+    gap: 7px;
+}
+
+.rows span {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+
+    border-top: 1px solid rgba(130, 158, 190, 0.11);
+    border-left: 2px solid var(--cyan);
+}
+
+.on-call-dropdown {
+    border-top: 1px solid rgba(130, 158, 190, 0.11);
+    border-left: 2px solid var(--cyan);
+    border-radius: 8px;
+    background: rgba(3, 7, 12, 0.35);
+}
+
+.on-call-dropdown summary {
+    min-height: 48px;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 12px;
+    align-items: center;
+    gap: 8px;
+    padding: 11px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.on-call-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.on-call-dropdown summary::after {
+    content: '⌄';
+    grid-column: 3;
+    color: var(--cyan);
+    text-align: right;
+}
+
+.on-call-dropdown[open] summary::after {
+    content: '⌃';
+}
+
+.on-call-dropdown summary b {
+    grid-column: 2;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.on-call-options {
+    display: grid;
+    gap: 2px;
+    padding: 0 7px 7px;
+}
+
+.on-call-options label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px;
+    border-radius: 5px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.on-call-options label:hover {
+    background: rgba(55, 220, 255, 0.08);
+}
+
+.on-call-options input {
+    accent-color: var(--cyan);
+}
+
+.on-call-options span {
+    font-size: 0.72rem;
+}
+
+.on-call-empty {
+    padding: 8px;
+}
+
+
+/* =========================================================
+   17. ACTION BUTTONS
+   ========================================================= */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.btn {
+    min-height: 38px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.035);
+    color: #dce4ed;
+
+    font-size: 0.63rem;
+    font-weight: 800;
+
+    letter-spacing: 0.05em;
+}
+
+.primary {
+    border-color: var(--red);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            #a90010
+        );
+
+    color: #fff;
+}
+
+.change {
+    border-color: rgba(255, 187, 56, 0.22);
+}
+
+
+/* =========================================================
+   18. SHERLOCK AI
+   ========================================================= */
+
+.ai {
+    display: grid;
+
+    grid-template-columns: 145px 1fr;
+
+    background:
+        radial-gradient(
+            circle at 12% 50%,
+            rgba(230, 0, 0, 0.24),
+            transparent 28%
+        ),
+        linear-gradient(125deg, #12151d, #1a0c14);
+}
+
+.ai-orb {
+    position: relative;
+
+    display: grid;
+    place-items: center;
+}
+
+.ai-orb span {
+    width: 96px;
+    height: 96px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+
+    font-size: 3.8rem;
+}
+
+.ai-orb i {
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border: 1px dashed rgba(55, 220, 255, 0.3);
+    border-radius: 50%;
+}
+
+
+/* ---------- Terminal ---------- */
+
+.terminal {
+    padding: 9px 11px;
+
+    border: 1px solid rgba(55, 220, 255, 0.18);
+    border-radius: 8px;
+
+    background: rgba(3, 7, 11, 0.4);
+    color: var(--cyan);
+
+    font: 0.66rem Consolas, monospace;
+}
+
+.terminal span {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   19. RESOURCES
+   ========================================================= */
+
+.resources {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 8px;
+}
+
+.resources button,
+.quick button {
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.025);
+    color: #dfe6ef;
+
+    text-align: left;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   20. CHECKLIST
+   ========================================================= */
+
+.checks {
+    display: grid;
+    gap: 3px;
+}
+
+.checks label {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+    padding: 7px;
+
+    font-size: 0.74rem;
+}
+
+
+/* =========================================================
+   21. QUICK LINKS
+   ========================================================= */
+
+.quick {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 8px;
+}
+
+.quick button {
+    justify-content: flex-start;
+}
+
+
+/* =========================================================
+   22. GENERAL HELPERS
+   ========================================================= */
+
+.muted {
+    color: var(--muted);
+    font-size: 0.65rem;
+}
+
+.hidden,
+.widget-hidden {
+    display: none !important;
+}
+
+.none {
+    padding: 30px;
+
+    text-align: center;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   23. TOAST NOTIFICATIONS
+   ========================================================= */
+
+#toast {
+    position: fixed;
+
+    z-index: 70;
+
+    right: 22px;
+    bottom: 22px;
+
+    padding: 13px 16px;
+
+    border-left: 3px solid var(--red);
+    border-radius: 9px;
+
+    background: #151b25;
+}
+
+
+/* =========================================================
+   24. ROTA LAUNCHER
+   ========================================================= */
+
+.rota-launch {
+    display: grid;
+
+    grid-template-columns: 58px 1fr auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+    padding: 16px;
+
+    border: 1px solid rgba(55, 220, 255, 0.18);
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(55, 220, 255, 0.06),
+            rgba(230, 0, 0, 0.04)
+        );
+}
+
+.rota-launch-icon {
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(230, 0, 0, 0.5);
+    border-radius: 11px;
+
+    background: rgba(230, 0, 0, 0.12);
+    color: #ff5c67;
+
+    font-size: 22px;
+}
+
+.rota-launch-info {
+    display: grid;
+    gap: 4px;
+}
+
+.rota-launch-info small {
+    color: var(--cyan);
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.rota-launch-info strong {
+    font-size: 0.9rem;
+}
+
+.rota-launch-info span {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.rota-launch-status {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+    padding: 6px 9px;
+
+    border: 1px solid rgba(56, 230, 143, 0.2);
+    border-radius: 99px;
+
+    background: rgba(56, 230, 143, 0.05);
+    color: var(--green);
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   25. OVERLAY
+   ========================================================= */
+
+#overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 25;
+
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================================
+   26. DIALOG / WIDGET SETTINGS
+   ========================================================= */
+
+dialog {
+    width: min(750px, calc(100vw - 28px));
+    max-height: 90vh;
+
+    padding: 0;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    background: #0d131d;
+    color: #fff;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+dialog form {
+    display: grid;
+
+    grid-template-rows: auto 1fr auto;
+
+    max-height: 90vh;
+}
+
+dialog header,
+dialog footer {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    padding: 18px 20px;
+
+    border-bottom: 1px solid var(--line);
+}
+
+dialog header > div {
+    flex: 1;
+}
+
+dialog header p {
+    margin: 3px 0;
+    color: var(--muted);
+}
+
+dialog footer {
+    border-top: 1px solid var(--line);
+    border-bottom: 0;
+}
+
+dialog footer span {
+    flex: 1;
+}
+
+
+/* ---------- Widget Options ---------- */
+
+#widgetSettings {
+    overflow: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 9px;
+    padding: 17px 20px;
+}
+
+.widgetOption {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+    padding: 11px 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.widgetOption > span {
+    flex: 1;
+}
+
+.widgetOption input {
+    accent-color: var(--green);
+}
+
+
+/* =========================================================
+   27. RESPONSIVE - MEDIUM DESKTOP
+   ========================================================= */
+
+@media (max-width: 1250px) {
+
+    .metrics {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .quick {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   28. RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #sidebar {
+        width: min(290px, 84vw);
+        transform: translateX(-100%);
+    }
+
+    #sidebar.open {
+        transform: none;
+    }
+
+    .shell,
+    body.collapsed .shell {
+        margin-left: 0;
+    }
+
+    header {
+        height: 90px;
+        padding: 14px 18px;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .collapse {
+        display: none;
+    }
+
+    .title p,
+    .title > small,
+    .header-sherlock {
+        display: none;
+    }
+
+    main {
+        padding: 19px 18px 40px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wide {
+        grid-column: auto;
+    }
+
+    .resources {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .notice {
+        grid-template-columns: 1fr;
+    }
+
+    .notice > em {
+        width: max-content;
+    }
+
+}
+
+
+/* =========================================================
+   29. RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+    .command > span {
+        display: none;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .three {
+        grid-template-columns: 1fr;
+    }
+
+    .ai {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-orb {
+        display: none;
+    }
+
+    .resources,
+    .quick,
+    #widgetSettings {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .rota-launch {
+        grid-template-columns: 48px 1fr;
+    }
+
+    .rota-launch-status {
+        grid-column: 1 / -1;
+        width: max-content;
+    }
+
+}
