@@ -76,7 +76,7 @@ const SNOC_CONFIG = Object.freeze({
   ciscoIq: 'https://iq.cisco.com/login/',
   equinix: 'https://portal.equinix.com/login/',
   // URL opened by the Daily Report widget.
-  dailyReport: 'https://vodafone.sharepoint.com/:u:/r/sites/VBTSMESNOC/Shared%20Documents/SNOC/Dashboard/SNOC/Daily%20Ticket%20Reporting%20Suite.html?d=w176ae6ebc16f46b29d8e9aa89fef4b58&csf=1&web=1&e=VjhFN3',
+  dailyReport: 'https://teams.microsoft.com/l/channel/19%3A2vU0WUuhSLwrx26Z1C090n2tkI5Vq2o0EeJVq20ErLw1%40thread.tacv2/Processes%20-%20%20LWIs?groupId=d204cf32-f26a-4d85-bebd-047fcc3adc5f&tenantId=68283f3b-8487-4c86-adb3-a5228f18b893',
 
   // AILS SharePoint resource
   ails: 'https://vodafone.sharepoint.com/teams/vbapps/AILS/SitePages/AILS.aspx?TeamsCID=9f9e102a-cee3-45f6-b3d2-81d30002fc9b#/search',
