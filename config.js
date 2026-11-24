@@ -42,8 +42,8 @@ const SNOC_CONFIG = Object.freeze({
   managementRota: '',
 
   // CHANGE MANAGEMENT
-  changeTracker: 'https://vodafone.sharepoint.com/:x:/r/sites/DedicatedChangeTrackers/_layouts/15/Doc.aspx?sourcedoc=%7B584DF4CD-76E5-4B61-A47D-2D35345D8D67%7D&file=NESO%20Dedicated%20Change%20Tracker.xlsx&fromShare=true&action=default&mobileredirect=true',
- 
+  changeTracker: '',
+  createChangeForm: '',
 
   // HANDOVER
   handover: '',
