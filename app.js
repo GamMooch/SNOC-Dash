@@ -30,6 +30,7 @@
     oncall: 'NESO On-Call Coverage',
     changes: 'Change Tracker',
     dailyReport: 'Daily Report',
+    ails: 'AILS',
     sherlock: 'Sherlock',
     neso: 'NESO Operations',
     checklist: 'Shift Checklist',

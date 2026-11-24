@@ -24,7 +24,7 @@ const SNOC_CONFIG = Object.freeze({
   // Set noticesDocument to a published CSV URL. The CSV columns are:
   // title,message,level
   // Users can update the shared CSV without changing config.js.
-  noticesDocument: '',
+  noticesDocument: 'notices.csv',
   notices: [],
 
 
@@ -77,6 +77,9 @@ const SNOC_CONFIG = Object.freeze({
   equinix: 'https://portal.equinix.com/login/',
   dailyReports: 'https://teams.microsoft.com/l/channel/19%3A2vU0WUuhSLwrx26Z1C090n2tkI5Vq2o0EeJVq20ErLw1%40thread.tacv2/Processes%20-%20%20LWIs?groupId=d204cf32-f26a-4d85-bebd-047fcc3adc5f&tenantId=68283f3b-8487-4c86-adb3-a5228f18b893',
 
+  // AILS SharePoint resource
+  ails: '',
+
   // DEFAULT WIDGET VISIBILITY
   widgets: {
     notices: true,
@@ -86,6 +89,7 @@ const SNOC_CONFIG = Object.freeze({
     oncall: true,
     changes: true,
     dailyReport: true,
+    ails: true,
     sherlock: true,
     neso: true,
     checklist: true,
