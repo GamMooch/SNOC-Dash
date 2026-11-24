@@ -8,7 +8,8 @@
     checks: 'snocHub.checks.v7',
     widgets: 'snocHub.widgets.v7',
     side: 'snocHub.side.v7',
-    onCall: 'snocHub.onCall.v7'
+    onCall: 'snocHub.onCall.v7',
+    dailyReportUrl: 'snocHub.dailyReportUrl.v7'
   };
 
   const checks = [
@@ -92,7 +93,9 @@
   }
 
   function openLink(key) {
-    const url = SNOC_CONFIG[key];
+    const url = key === 'dailyReports'
+      ? (read(STORE.dailyReportUrl, '') || SNOC_CONFIG.dailyReports)
+      : SNOC_CONFIG[key];
     if (!url) return toast('Link not configured');
     if (!safeUrl(url)) return toast('Configured link is invalid');
     window.open(url, '_blank', 'noopener,noreferrer');
