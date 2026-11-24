@@ -42,8 +42,8 @@ const SNOC_CONFIG = Object.freeze({
   managementRota: '',
 
   // CHANGE MANAGEMENT
-  changeTracker: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Oz8oaIeEhkyts6Uijxi4kzLPBNJq8oVNvr0Ef8w63F9UQUFDOU1aSkxDM1Y0VlkyNE5MSkZIU043NSQlQCN0PWcu',
-  createChangeForm: 'https://vodafone.sharepoint.com/:x:/r/sites/VBTSMESNOC/Shared%20Documents/Reports/Change%20Tracker/Change%20Tracker%20Form.xlsx?d=wd52eee362c1d424a9a1daf043d4259b6&csf=1&web=1&e=2DHwwx',
+  changeTracker: 'https://vodafone.sharepoint.com/:x:/r/sites/VBTSMESNOC/Shared%20Documents/Reports/Change%20Tracker/Change%20Tracker%20Form.xlsx?d=wd52eee362c1d424a9a1daf043d4259b6&csf=1&web=1&e=2DHwwx',
+  createChangeForm: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Oz8oaIeEhkyts6Uijxi4kzLPBNJq8oVNvr0Ef8w63F9UQUFDOU1aSkxDM1Y0VlkyNE5MSkZIU043NSQlQCN0PWcu',
 
   // HANDOVER
   handover: 'https://vodafone.sharepoint.com/:u:/r/sites/VBTSMESNOC/Shared%20Documents/SNOC/Dashboard/SNOC/SNOC_Shift_Handover_Form.html?d=wb7596b4f6dec4cffa3486cd6ea9d7fba&csf=1&web=1&e=cH9v6a',
@@ -78,7 +78,7 @@ const SNOC_CONFIG = Object.freeze({
   dailyReports: 'https://teams.microsoft.com/l/channel/19%3A2vU0WUuhSLwrx26Z1C090n2tkI5Vq2o0EeJVq20ErLw1%40thread.tacv2/Processes%20-%20%20LWIs?groupId=d204cf32-f26a-4d85-bebd-047fcc3adc5f&tenantId=68283f3b-8487-4c86-adb3-a5228f18b893',
 
   // AILS SharePoint resource
-  ails: '',
+  ails: 'https://vodafone.sharepoint.com/teams/vbapps/AILS/SitePages/AILS.aspx?TeamsCID=9f9e102a-cee3-45f6-b3d2-81d30002fc9b#/search',
 
   // DEFAULT WIDGET VISIBILITY
   widgets: {
