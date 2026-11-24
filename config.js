@@ -42,11 +42,11 @@ const SNOC_CONFIG = Object.freeze({
   managementRota: '',
 
   // CHANGE MANAGEMENT
-  changeTracker: '',
-  createChangeForm: '',
+  changeTracker: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Oz8oaIeEhkyts6Uijxi4kzLPBNJq8oVNvr0Ef8w63F9UQUFDOU1aSkxDM1Y0VlkyNE5MSkZIU043NSQlQCN0PWcu',
+  createChangeForm: 'https://vodafone.sharepoint.com/:x:/r/sites/VBTSMESNOC/Shared%20Documents/Reports/Change%20Tracker/Change%20Tracker%20Form.xlsx?d=wd52eee362c1d424a9a1daf043d4259b6&csf=1&web=1&e=2DHwwx',
 
   // HANDOVER
-  handover: '',
+  handover: 'https://vodafone.sharepoint.com/:u:/r/sites/VBTSMESNOC/Shared%20Documents/SNOC/Dashboard/SNOC/SNOC_Shift_Handover_Form.html?d=wb7596b4f6dec4cffa3486cd6ea9d7fba&csf=1&web=1&e=cH9v6a',
   updateHandover: 'https://vodafone.sharepoint.com/:x:/r/sites/VBTSMESNOC/Shared%20Documents/SNOC/Dashboard/Document/Handover.xlsx?d=waf6a2f1592ba4805afe853820e9ac7ab&csf=1&web=1&e=EBH9Sr',
 
   // SHERLOCK
